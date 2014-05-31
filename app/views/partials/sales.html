@@ -1,0 +1,4 @@
+<div ng-include="'partials/navbar.html'"></div>
+<p>This is the Sales view.</p>
+
+<div ng-repeat="sale in sales"><a href="/sales/{{sale._id}}">{{sale.headline}}<a></div>

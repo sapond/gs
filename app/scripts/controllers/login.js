@@ -7,7 +7,6 @@ angular.module('garagesalesApp')
 
     $scope.login = function(form) {
       $scope.submitted = true;
-      
       if(form.$valid) {
         Auth.login({
           email: $scope.user.email,
@@ -17,9 +16,8 @@ angular.module('garagesalesApp')
           // Logged in, redirect to home
           $location.path('/');
         })
-        .catch( function(err) {
-          err = err.data;
-          $scope.errors.other = err.message;
+        .fail( function(err) {
+            console.log(err);
         });
       }
     };

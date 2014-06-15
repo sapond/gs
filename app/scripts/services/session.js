@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('garagesalesApp')
+angular.module('garageSalesApp')
   .factory('Session', function ($resource) {
     return $resource('/api/session/');
   });

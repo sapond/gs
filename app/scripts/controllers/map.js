@@ -1,7 +1,7 @@
 /*jslint indent: 4 */
 'use strict';
 
-angular.module('garagesalesApp')
+angular.module('garageSalesApp')
   .controller('MapCtrl', function ($scope, geolocation, $rootScope) {
 
     $scope.useMyLocationPrompt = 'display:none';

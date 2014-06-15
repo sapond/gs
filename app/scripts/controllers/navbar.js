@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('garagesalesApp')
+angular.module('garageSalesApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
 
     $scope.logout = function() {

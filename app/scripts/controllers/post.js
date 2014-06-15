@@ -1,6 +1,5 @@
 'use strict';
-
-angular.module('garagesalesApp')
+angular.module('garageSalesApp')
   .controller('PostCtrl', function ($scope, Sale, $location) {
     $scope.errors = {};
     $scope.post = {
@@ -18,7 +17,7 @@ angular.module('garagesalesApp')
             addr2: $scope.post.address2,
             city: $scope.post.city,
             state: $scope.post.state,
-            zip: $scope.post.zip,
+            zip: $scope.post.zip
         })
         .$promise
         .then( function() {

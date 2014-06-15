@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('garagesalesApp')
+angular.module('garageSalesApp')
   .controller('SettingsCtrl', function ($scope, User, Auth) {
     $scope.errors = {};
 

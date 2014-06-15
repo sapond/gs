@@ -1,5 +1,5 @@
 'use strict'; 
-angular.module('garagesalesApp', [
+angular.module('garageSalesApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',

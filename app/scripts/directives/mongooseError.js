@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('garagesalesApp')
+angular.module('garageSalesApp')
 
   /**
    * Removes server error when user updates input

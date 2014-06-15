@@ -1,5 +1,5 @@
 'use strict';
-angular.module('garagesalesApp')
+angular.module('garageSalesApp')
     .factory('Sale', function($resource) {
         return $resource('/api/sales/:id', { id: '@id' });
     });

@@ -1,4 +1,4 @@
 'use strict';
 
-angular.module('garagesalesApp')
+angular.module('garageSalesApp')
   .controller('MainCtrl', function ($scope, $http) {});

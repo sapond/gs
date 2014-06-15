@@ -13,8 +13,8 @@ angular.module('garageSalesApp')
         Sale.save({
             headline: $scope.post.headline,
             description: $scope.post.description,
-            addr1: $scope.post.address,
-            addr2: $scope.post.address2,
+            address1: $scope.post.address1,
+            address2: $scope.post.address2,
             city: $scope.post.city,
             state: $scope.post.state,
             zip: $scope.post.zip

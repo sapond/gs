@@ -7,9 +7,9 @@ angular.module('garageSalesApp')
     $scope.useMyLocationPrompt = 'display:none';
     $scope.sales = [{latitude:32, longitude: -96, id:1}];
 
+
     var setCenter = function() {
         $scope.map = {
-
             center: {
                 latitude: $scope.coords?$scope.coords.lat:0,
                 longitude: $scope.coords?$scope.coords.long:0

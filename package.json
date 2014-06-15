@@ -17,6 +17,7 @@
     "passport": "~0.2.0",
     "passport-local": "~0.1.6",
     "passport-facebook": "~1.0.3",
+    "node-geocoder": "~2.5.0",
     "ejs": "~0.8.4"
   },
   "devDependencies": {

@@ -4,7 +4,6 @@ angular.module('garageSalesApp')
     .factory('Auth', function Auth($location, $rootScope, Session, User, $cookieStore) {
         // Get currentUser from cookie
         $rootScope.currentUser = $cookieStore.get('user') || null;
-        console.log($rootScope.currentUser);
         $cookieStore.remove('user');
 
         return {

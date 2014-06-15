@@ -1,34 +1,28 @@
-/*jslint indent: 4 */
 'use strict';
-
 angular.module('garageSalesApp')
-  .controller('MapCtrl', function ($scope, geolocation, $rootScope) {
+    .controller('MapCtrl', function ($scope, $rootScope, geolocation, $q) {
 
-    $scope.useMyLocationPrompt = 'display:none';
-    $scope.sales = [{latitude:32, longitude: -96, id:1}];
+        $scope.map = {center: {latitude: 0, longitude: 0}, zoom: 10};
+        $scope.useMyLocationPrompt = 'display:none';
 
+        function centerMap(geoPosition) {
+            $scope.map.center = {
+                latitude: geoPosition.coords.latitude,
+                longitude: geoPosition.coords.longitude
+            };
+        }
 
-    var setCenter = function() {
-        $scope.map = {
-            center: {
-                latitude: $scope.coords?$scope.coords.lat:0,
-                longitude: $scope.coords?$scope.coords.long:0
-            },
-            zoom: 10
-        };
-    };
+        $scope.salesMarkers = _.map(
+            $scope.sales,
+            function (sale, index) {
+                return { id: index + 1, latitude: window.parseFloat(sale.lat), longitude: window.parseFloat(sale.lng), title: 'foo'}
+            }
+        );
 
-    setCenter();
+        $q.when(geolocation.getLocation(), centerMap);
 
-    geolocation.getLocation()
-        .then(function(data){
-            $scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
-            setCenter();
+        $rootScope.$on('error', function () {
+            $scope.useMyLocationPrompt = {display: 'block'};
         });
 
-    $rootScope.$on('error', function() {
-        setCenter();
-        $scope.useMyLocationPrompt = {display:'block'};
     });
-
-});

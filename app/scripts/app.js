@@ -46,7 +46,7 @@
                     sales: function(Sale) {
                         return Sale.query();
                     },
-                    location: function(geolocation) {
+                    _location: function(geolocation) {
                         return geolocation.getLocation();
                     }
                 }

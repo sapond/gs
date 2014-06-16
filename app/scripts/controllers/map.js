@@ -1,21 +1,20 @@
-/* global _ */
-'use strict';
+/* global _ */ 'use strict';
 angular.module('garageSalesApp')
-    .controller('MapCtrl', function ($scope, $rootScope, location, sales, $q) {
+    .controller('MapCtrl', function ($scope, $rootScope, _location, sales, $q) {
         $scope.map = {center: {latitude: 0, longitude: 0}, zoom: 10};
         $scope.salesMarkers = [];
         $scope.useMyLocationPrompt = 'display:none';
 
-        function centerMap(location) {
+        function centerMap(_location) {
             $scope.map.center = {
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude
+                latitude: _location.coords.latitude,
+                longitude: _location.coords.longitude
             };
         }
 
-        $q.all({location: location, sales: sales}).then(function(results) {
+        $q.all({_location: _location, sales: sales}).then(function(results) {
             console.log(sales);
-            centerMap(results.location);
+            centerMap(results._location);
             $scope.salesMarkers = _.map(
                 results.sales,
                 function (sale, index) {

@@ -1,5 +1,4 @@
-'use strict'; angular.module('garageSalesApp', [ 'ngCookies',
-    'ngResource',
+'use strict'; angular.module('garageSalesApp', [ 'ngCookies', 'ngResource',
     'ngSanitize',
     'ngRoute',
     'geolocation',
@@ -21,15 +20,6 @@
                 controller: 'SettingsCtrl',
                 authenticate: true
             })
-            //.when('/sales', {
-                //templateUrl: 'partials/sales.html',
-                //controller: 'SalesCtrl',
-                //resolve: {
-                    //sales: function(Sale) {
-                        //return Sale.query();
-                    //}
-                //}
-            //})
             .when('/sales/:saleId', {
                 templateUrl: 'partials/sale.html',
                 controller: 'SaleCtrl'
@@ -43,26 +33,18 @@
                 templateUrl: 'partials/combined.html',
                 controller: 'CombinedCtrl',
                 resolve: {
-                    sales: function(Sale) {
-                        return Sale.query();
+                    sales: function(Sale, Auth) {
+                        if (Auth.isLoggedIn()) {
+                            return Sale.query();
+                        }
                     },
-                    _location: function(geolocation) {
-                        return geolocation.getLocation();
+                    _location: function(geolocation, Auth) {
+                        if (Auth.isLoggedIn()) {
+                            return geolocation.getLocation();
+                        }
                     }
                 }
             })
-            //.when('/map', {
-                //templateUrl: 'partials/map.html',
-                //controller: 'MapCtrl',
-                //resolve: {
-                    //sales: function(Sale) {
-                        //return Sale.query();
-                    //},
-                    //_location: function(geolocation) {
-                        //return geolocation.getLocation();
-                    //}
-                //}
-            //})
             .otherwise({
                 redirectTo: '/combined'
             });

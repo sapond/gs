@@ -9,7 +9,7 @@ angular.module('garageSalesApp')
         $location.path('/login');
       });
     };
-    
+
     $scope.isActive = function(route) {
       return route === $location.path();
     };

@@ -1,6 +1,6 @@
 /* global _ */ 'use strict';
 angular.module('garageSalesApp')
-    .controller('MapCtrl', function ($scope, $rootScope, _location, sales, $q) {
+    .controller('MapCtrl', function ($scope, $rootScope, $q) {
         $scope.map = {center: {latitude: 0, longitude: 0}, zoom: 10};
         $scope.salesMarkers = [];
         $scope.useMyLocationPrompt = 'display:none';
@@ -12,16 +12,21 @@ angular.module('garageSalesApp')
             };
         }
 
-        $q.all({_location: _location, sales: sales}).then(function(results) {
-            console.log(sales);
-            centerMap(results._location);
-            $scope.salesMarkers = _.map(
-                results.sales,
-                function (sale, index) {
-                    return { id: index + 1, latitude: window.parseFloat(sale.lat), longitude: window.parseFloat(sale.lng), title: 'foo'};
-                }
-            );
-        });
+        $q.all({_location: $scope._location, sales: $scope.sales})
+            .then(function(results) {
+                centerMap(results._location);
+                $scope.salesMarkers = _.map(
+                    results.sales,
+                    function (sale, index) {
+                        return {
+                            id: index + 1,
+                            latitude: window.parseFloat(sale.lat),
+                            longitude: window.parseFloat(sale.lng),
+                            title: 'foo'
+                        };
+                    }
+                );
+            });
 
         $rootScope.$on('error', function () {
             $scope.useMyLocationPrompt = {display: 'block'};

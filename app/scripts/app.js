@@ -1,5 +1,4 @@
-'use strict'; angular.module('garageSalesApp', [
-    'ngCookies',
+'use strict'; angular.module('garageSalesApp', [ 'ngCookies',
     'ngResource',
     'ngSanitize',
     'ngRoute',
@@ -22,15 +21,15 @@
                 controller: 'SettingsCtrl',
                 authenticate: true
             })
-            .when('/sales', {
-                templateUrl: 'partials/sales.html',
-                controller: 'SalesCtrl',
-                resolve: {
-                    sales: function(Sale) {
-                        return Sale.query();
-                    }
-                }
-            })
+            //.when('/sales', {
+                //templateUrl: 'partials/sales.html',
+                //controller: 'SalesCtrl',
+                //resolve: {
+                    //sales: function(Sale) {
+                        //return Sale.query();
+                    //}
+                //}
+            //})
             .when('/sales/:saleId', {
                 templateUrl: 'partials/sale.html',
                 controller: 'SaleCtrl'
@@ -39,9 +38,10 @@
                 templateUrl: 'partials/post.html',
                 controller: 'PostCtrl'
             })
-            .when('/map', {
-                templateUrl: 'partials/map.html',
-                controller: 'MapCtrl',
+            .when('/combined', {
+                authenticate: true,
+                templateUrl: 'partials/combined.html',
+                controller: 'CombinedCtrl',
                 resolve: {
                     sales: function(Sale) {
                         return Sale.query();
@@ -51,8 +51,20 @@
                     }
                 }
             })
+            //.when('/map', {
+                //templateUrl: 'partials/map.html',
+                //controller: 'MapCtrl',
+                //resolve: {
+                    //sales: function(Sale) {
+                        //return Sale.query();
+                    //},
+                    //_location: function(geolocation) {
+                        //return geolocation.getLocation();
+                    //}
+                //}
+            //})
             .otherwise({
-                redirectTo: '/sales'
+                redirectTo: '/combined'
             });
 
         $locationProvider.html5Mode(true);

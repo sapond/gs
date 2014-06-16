@@ -1,5 +1,4 @@
-'use strict';
-angular.module('garageSalesApp', [
+'use strict'; angular.module('garageSalesApp', [
     'ngCookies',
     'ngResource',
     'ngSanitize',
@@ -8,7 +7,6 @@ angular.module('garageSalesApp', [
     'google-maps'
 ])
     .config(function ($routeProvider, $locationProvider, $httpProvider) {
-
         $routeProvider
             .when('/login', {
                 templateUrl: 'partials/login',
@@ -26,7 +24,12 @@ angular.module('garageSalesApp', [
             })
             .when('/sales', {
                 templateUrl: 'partials/sales.html',
-                controller: 'SalesCtrl'
+                controller: 'SalesCtrl',
+                resolve: {
+                    sales: function(Sale) {
+                        return Sale.query();
+                    }
+                }
             })
             .when('/sales/:saleId', {
                 templateUrl: 'partials/sale.html',
@@ -39,6 +42,14 @@ angular.module('garageSalesApp', [
             .when('/map', {
                 templateUrl: 'partials/map.html',
                 controller: 'MapCtrl',
+                resolve: {
+                    sales: function(Sale) {
+                        return Sale.query();
+                    },
+                    location: function(geolocation) {
+                        return geolocation.getLocation();
+                    }
+                }
             })
             .otherwise({
                 redirectTo: '/sales'

@@ -1,5 +1,4 @@
-'use strict'; angular.module('garageSalesApp', [ 'ngCookies', 'ngResource',
-    'ngSanitize',
+'use strict'; angular.module('garageSalesApp', [ 'ngCookies', 'ngResource', 'ngSanitize',
     'ngRoute',
     'geolocation',
     'google-maps'

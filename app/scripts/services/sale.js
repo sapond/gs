@@ -4,7 +4,7 @@ angular.module('garageSalesApp')
         return $resource('/api/sales/:id', { id: '@id' }, {
             get: {
                 method: 'GET',
-               cache: true
+                cache: true
             }
         });
     });

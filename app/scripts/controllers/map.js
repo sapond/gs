@@ -12,11 +12,11 @@ angular.module('garageSalesApp')
             };
         }
 
-        $q.all({_location: $scope._location, sales: $scope.sales})
+        $q.all([$scope._location, $scope.sales.$promise])
             .then(function(results) {
-                centerMap(results._location);
+                centerMap(results[0]);
                 $scope.salesMarkers = _.map(
-                    results.sales,
+                    results[1],
                     function (sale, index) {
                         return {
                             id: index + 1,
